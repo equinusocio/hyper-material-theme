@@ -29,7 +29,7 @@ theme: '',
 backgroundOpacity: '1',
 // Set the accent color for the current active tab
 accentColor: '#64FFDA',
-// Mac Only. Enable the dark vibrance and blurred background
+// Mac Only. Need restart. Enable the dark vibrance and blurred background
 // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
 enableVibrance: false,
 ```
