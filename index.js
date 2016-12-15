@@ -1,9 +1,10 @@
 //exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
 
 exports.decorateConfig = (config) => {
+
   var confObj = Object.assign({}, config, {
     foregroundColor: '#eceff1',
-    backgroundColor: 'rgba(38,50,56, 0.9)',
+    backgroundColor: `rgba(38,50,56, ${ config.backgroundOpacity || '1' })`,
     borderColor: '#37474F',
     cursorColor: '#FFCC00',
     colors: {
@@ -84,9 +85,10 @@ exports.decorateConfig = (config) => {
     `
   });
 
-
-  exports.onWindow = if (confObj.enableVibrance == true) {
-    (browserWindow) => browserWindow.setVibrancy('dark');
+  exports.onWindow = (browserWindow) => {
+    if (confObj.enableVibrance == true) {
+      browserWindow.setVibrancy('dark');
+    }
   };
 
   return confObj;
