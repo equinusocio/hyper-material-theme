@@ -1,10 +1,12 @@
-//exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
+// exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
+// backgroundColor: `rgba(38,50,56, ${ config.backgroundOpacity || '1' })`,
 
 exports.decorateConfig = (config) => {
 
-  var confObj = Object.assign({}, config, {
+  // New configuration template
+  const confObj = Object.assign({}, config, {
     foregroundColor: '#eceff1',
-    backgroundColor: `rgba(38,50,56, ${ config.backgroundOpacity || '1' })`,
+    backgroundColor: `rgba(38, 50, 56, 1)`,
     borderColor: '#37474F',
     cursorColor: '#FFCC00',
     colors: {
@@ -85,6 +87,18 @@ exports.decorateConfig = (config) => {
     `
   });
 
+  // Check the theme setting and update background color
+  if (confObj.theme == 'Palenight') {
+    confObj.backgroundColor = `rgba(41, 45, 62, 1)`;
+  }
+  else if (confObj.theme == 'Darker') {
+    confObj.backgroundColor = `rgba(33, 33, 33, 1)`;
+  }
+  else {
+    confObj.backgroundColor = `rgba(38, 50, 56, 1)`;
+  }
+
+  // Check the enableVibrance setting and update background color
   exports.onWindow = (browserWindow) => {
     if (confObj.enableVibrance == true) {
       browserWindow.setVibrancy('dark');
