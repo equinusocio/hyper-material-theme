@@ -1,28 +1,29 @@
-exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
+//exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
+
 exports.decorateConfig = (config) => {
-  return Object.assign({}, config, {
+  var confObj = Object.assign({}, config, {
     foregroundColor: '#eceff1',
-    backgroundColor: '#263238',
+    backgroundColor: 'rgba(38,50,56, 0.9)',
     borderColor: '#37474F',
     cursorColor: '#FFCC00',
-    colors: [
-      '#000000',
-      '#D62341',
-      '#9ECE58',
-      '#FAED70',
-      '#396FE2',
-      '#BB80B3',
-      '#2DDAFD',
-      '#d0d0d0',
-      '#546E7A',
-      '#FF5370',
-      '#C3E88D',
-      '#FFCB6B',
-      '#82AAFF',
-      '#C792EA',
-      '#89DDFF',
-      '#ffffff'
-    ],
+    colors: {
+      black: '#000000',
+      red: '#D62341',
+      green: '#9ECE58',
+      yellow: '#FAED70',
+      blue: '#396FE2',
+      magenta: '#BB80B3',
+      cyan: '#2DDAFD',
+      white: '#d0d0d0',
+      lightBlack: '#546E7A',
+      lightRed: '#FF5370',
+      lightGreen: '#C3E88D',
+      lightYellow: '#FFCB6B',
+      lightBlue: '#82AAFF',
+      lightMagenta: '#C792EA',
+      lightCyan: '#89DDFF',
+      lightWhite: '#ffffff'
+    },
     termCSS: `
       ${config.termCSS || ''}
       @keyframes blink-animation {
@@ -38,6 +39,56 @@ exports.decorateConfig = (config) => {
     `,
     css: `
       ${config.css || ''}
+
+      .hyper_main {
+        border: none;
+      }
+
+      .tabs_borderShim {
+        display: none;
+      }
+
+      .tab_tab {
+        border: none;
+        color: rgba(255, 255, 255, 0.2);
+        font-weight: bold;
+      }
+
+      .tab_tab::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: ${config.accentColor || '#80CBC4'};
+        transform: scaleX(0);
+        transition: none;
+      }
+
+      .tab_tab.tab_active {
+        color: #FFF;
+      }
+
+      .tab_tab.tab_active::before {
+        transform: scaleX(1);
+        transition: all 300ms cubic-bezier(0.0, 0.0, 0.2, 1)
+      }
+
+      .tab_textInner {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        padding: 0px 24px 0 8px;
+      }
     `
-  })
+  });
+
+
+  exports.onWindow = if (confObj.enableVibrance == true) {
+    (browserWindow) => browserWindow.setVibrancy('dark');
+  };
+
+  return confObj;
+
 }
