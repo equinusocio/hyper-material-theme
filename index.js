@@ -54,7 +54,6 @@ exports.decorateConfig = (config) => {
       .tab_tab {
         border: none;
         color: rgba(255, 255, 255, 0.2);
-        font-weight: bold;
       }
 
       .tab_tab::before {
