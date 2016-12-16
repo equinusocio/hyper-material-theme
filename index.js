@@ -1,5 +1,21 @@
-// exports.onWindow = browserWindow => browserWindow.setVibrancy('dark');
-// backgroundColor: `rgba(38,50,56, ${ config.backgroundOpacity || '1' })`,
+const colors = {
+  black: '#000000',
+  red: '#D62341',
+  green: '#9ECE58',
+  yellow: '#FAED70',
+  blue: '#396FE2',
+  magenta: '#BB80B3',
+  cyan: '#2DDAFD',
+  white: '#d0d0d0',
+  lightBlack: 'rgba(255, 255, 255, 0.2)',
+  lightRed: '#FF5370',
+  lightGreen: '#C3E88D',
+  lightYellow: '#FFCB6B',
+  lightBlue: '#82AAFF',
+  lightMagenta: '#C792EA',
+  lightCyan: '#89DDFF',
+  lightWhite: '#ffffff'
+};
 
 exports.decorateConfig = (config) => {
 
@@ -9,24 +25,7 @@ exports.decorateConfig = (config) => {
     backgroundColor: `rgba(38, 50, 56, ${ config.backgroundOpacity || '1' })`,
     borderColor: '#37474F',
     cursorColor: '#FFCC00',
-    colors: {
-      black: '#000000',
-      red: '#D62341',
-      green: '#9ECE58',
-      yellow: '#FAED70',
-      blue: '#396FE2',
-      magenta: '#BB80B3',
-      cyan: '#2DDAFD',
-      white: '#d0d0d0',
-      lightBlack: '#546E7A',
-      lightRed: '#FF5370',
-      lightGreen: '#C3E88D',
-      lightYellow: '#FFCB6B',
-      lightBlue: '#82AAFF',
-      lightMagenta: '#C792EA',
-      lightCyan: '#89DDFF',
-      lightWhite: '#ffffff'
-    },
+    colors,
     termCSS: `
       ${config.termCSS || ''}
       @keyframes blink-animation {
@@ -38,6 +37,11 @@ exports.decorateConfig = (config) => {
         animation: blink-animation .777s ease-in-out infinite;
         box-sizing: content-box !important;
         mix-blend-mode: difference;
+      }
+
+      x-screen a {
+        text-decoration: underline !important;
+        color: ${colors.lightCyan} !important;
       }
     `,
     css: `
@@ -87,10 +91,10 @@ exports.decorateConfig = (config) => {
   });
 
   // Check the theme setting and update background color
-  if (confObj.theme == 'Palenight') {
+  if (confObj.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
     confObj.backgroundColor = `rgba(41, 45, 62, ${ config.backgroundOpacity || '1' })`;
   }
-  else if (confObj.theme == 'Darker') {
+  else if (confObj.theme.toLowerCase() == 'Darker'.toLowerCase()) {
     confObj.backgroundColor = `rgba(33, 33, 33, ${ config.backgroundOpacity || '1' })`;
   }
   else {
