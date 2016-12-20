@@ -20,12 +20,16 @@ const colors = {
 exports.decorateConfig = (config) => {
 
   // New configuration template
-  const confObj = Object.assign({}, config, {
+  const confObj = Object.assign({},{
     foregroundColor: '#eceff1',
     backgroundColor: `rgba(38, 50, 56, ${ config.backgroundOpacity || '1' })`,
     borderColor: '#37474F',
     cursorColor: '#FFCC00',
+    enableVibrancy: true,
     colors,
+    theme: '',
+    backgroundOpacity: 0.8,
+    
     termCSS: `
       ${config.termCSS || ''}
       @keyframes blink-animation {
@@ -88,8 +92,7 @@ exports.decorateConfig = (config) => {
         padding: 0px 24px 0 8px;
       }
     `
-  });
-
+  }, config);    
   // Check the theme setting and update background color
   if (confObj.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
     confObj.backgroundColor = `rgba(41, 45, 62, ${ config.backgroundOpacity || '1' })`;
