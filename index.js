@@ -30,9 +30,7 @@ exports.decorateConfig = (config) => {
     termCSS: `
       ${config.termCSS || ''}
       @keyframes blink-animation {
-        to {
-          background-color: transparent;
-        }
+        50% { opacity: 0 }
       }
       .cursor-node[focus=true]:not([moving]) {
         animation: blink-animation .777s ease-in-out infinite;
