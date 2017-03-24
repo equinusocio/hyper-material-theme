@@ -20,12 +20,13 @@ plugins: ['hyper-material-theme'],
 
 
 ## Configuration
-This theme provides 4 additional settings that you can add in your `~/.hyper.js` file **directly after** the colors object.
+This theme provides 4 additional settings that you can add in your `~/.hyper.js` file **directly after** the `colors` array, within the `config` object.
 
 ```js
-   colors: {...
-    },
-
+   colors: [
+    ...
+   ],
+   
     // Set the theme variant,
     // OPTIONS: 'Darker', 'Palenight', ''
     theme: '',
