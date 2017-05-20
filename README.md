@@ -37,6 +37,8 @@ This theme provides 4 additional settings that you can add in your `~/.hyper.js`
     // Mac Only. Need restart. Enable the dark vibrance and blurred background
     // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
     enableVibrance: false,
-    
+    // Disable cursor blink
+    blinkCursor: false
+
     // the shell to run...
 ```
