@@ -33,7 +33,7 @@ exports.decorateConfig = (config) => {
         50% { opacity: 0 }
       }
       .cursor-node[focus=true]:not([moving]) {
-        animation: blink-animation .777s ease-in-out infinite;
+        ${ config.blinkCursor === false ? '' : 'animation: blink-animation .777s ease-in-out infinite;' }
         box-sizing: content-box !important;
         mix-blend-mode: difference;
       }
