@@ -47,6 +47,25 @@ exports.decorateConfig = config => {
       ::selection {
         background: rgba(255, 255, 255, 0.15);
       }
+
+      *::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        background-color: transparent;
+      }
+
+      *::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+
+      *::-webkit-scrollbar-thumb:window-inactive {
+        background: transparent;
+      }
     `,
     css: `
       ${config.css || ''}
