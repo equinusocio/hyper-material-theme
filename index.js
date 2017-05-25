@@ -1,3 +1,13 @@
+// Read the options
+const CONFIG = require(process.env.HOME + `/.hyper.js`).config;
+const THEME_CONFIG = CONFIG['MaterialTheme'] || {};
+
+// Defaults
+const DEFAULT_VIBRANCY = 'dark';
+
+// Current options
+const VIBRANCY = THEME_CONFIG.hasOwnProperty('vibrancy') ? THEME_CONFIG.vibrancy : DEFAULT_VIBRANCY;
+
 const colors = {
   black: '#000000',
   red: '#D62341',
@@ -17,27 +27,33 @@ const colors = {
   lightWhite: '#ffffff'
 };
 
-exports.decorateConfig = (config) => {
+module.exports.decorateBrowserOptions = config => {
+  config.vibrancy = VIBRANCY;
+  return config;
+};
 
-  // New configuration template
-  const confObj = Object.assign({}, config, {
-    foregroundColor: '#eceff1',
-    backgroundColor: `rgba(38, 50, 56, ${ config.backgroundOpacity || '1' })`,
-    borderColor: '#37474F',
-    cursorColor: `${ config.cursorColor || '#FFCC00'}`,
-    theme: `${ config.theme || '' }`,
+module.exports.decorateConfig = config => {
+
+  var BACKGORUND_COLOR;
+
+  if (THEME_CONFIG.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
+    BACKGORUND_COLOR = `rgba(41, 45, 62, ${THEME_CONFIG.backgroundOpacity || '1'})`;
+  }
+  else if (THEME_CONFIG.theme.toLowerCase() == 'Darker'.toLowerCase()) {
+    BACKGORUND_COLOR = `rgba(33, 33, 33, ${THEME_CONFIG.backgroundOpacity || '1'})`;
+  }
+  else {
+    BACKGORUND_COLOR = `rgba(38, 50, 56, ${THEME_CONFIG.backgroundOpacity || '1'})`;
+  }
+
+  config.backgroundColor = BACKGORUND_COLOR;
+  config.foregroundColor = '#eceff1';
+  config.borderColor = '#37474F';
+  config.cursorColor = `${config.cursorColor || '#FFCC00'}`;
+  return Object.assign({}, config, {
     colors,
     termCSS: `
       ${config.termCSS || ''}
-      @keyframes blink-animation {
-        50% { opacity: 0 }
-      }
-      .cursor-node[focus=true]:not([moving]) {
-        ${ config.cursorBlink === false ? '' : 'animation: blink-animation .777s ease-in-out infinite;' }
-        box-sizing: content-box !important;
-        mix-blend-mode: difference;
-      }
-
       x-screen a {
         text-decoration: underline !important;
         color: ${colors.lightCyan} !important;
@@ -66,7 +82,7 @@ exports.decorateConfig = (config) => {
         left: 0;
         right: 0;
         height: 2px;
-        background-color: ${config.accentColor || '#80CBC4'};
+        background-color: ${THEME_CONFIG.accentColor || '#80CBC4'};
         transform: scaleX(0);
         transition: none;
       }
@@ -88,25 +104,24 @@ exports.decorateConfig = (config) => {
       }
     `
   });
+};
 
-  // Check the theme setting and update background color
-  if (confObj.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
-    confObj.backgroundColor = `rgba(41, 45, 62, ${ config.backgroundOpacity || '1' })`;
-  }
-  else if (confObj.theme.toLowerCase() == 'Darker'.toLowerCase()) {
-    confObj.backgroundColor = `rgba(33, 33, 33, ${ config.backgroundOpacity || '1' })`;
-  }
-  else {
-    confObj.backgroundColor = `rgba(38, 50, 56, ${ config.backgroundOpacity || '1' })`;
-  }
+const enterFullscreen = () => {
+  document.body.classList.add('fullscreen');
+};
 
-  // Check the enableVibrance setting and update background color
-  exports.onWindow = (browserWindow) => {
-    if (confObj.enableVibrance == true) {
-      browserWindow.setVibrancy('dark');
-    }
-  };
+const leaveFullscreen = () => {
+  document.body.classList.remove('fullscreen');
+};
 
-  return confObj;
+const focus = () => {
+  document.body.classList.add('focus');
+};
 
-}
+const blur = () => {
+  document.body.classList.remove('focus');
+};
+
+module.exports.onWindow = browserWindow => {
+  return browserWindow;
+};
