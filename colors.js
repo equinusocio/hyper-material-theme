@@ -15,6 +15,6 @@ module.exports = {
     lightBlue: '#82AAFF',
     lightMagenta: '#C792EA',
     lightCyan: '#89DDFF',
-    lightWhite: '#ffffff'
-  }
-}
+    lightWhite: '#ffffff',
+  },
+};

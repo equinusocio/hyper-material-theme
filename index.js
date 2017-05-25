@@ -10,12 +10,12 @@ const DEFAULT_VIBRANCY = 'dark';
 const VIBRANCY = THEME_CONFIG.hasOwnProperty('vibrancy') ? THEME_CONFIG.vibrancy : DEFAULT_VIBRANCY;
 
 
-module.exports.decorateBrowserOptions = config => {
+exports.decorateBrowserOptions = config => {
   config.vibrancy = VIBRANCY;
   return config;
 };
 
-module.exports.decorateConfig = config => {
+exports.decorateConfig = config => {
 
   var BACKGORUND_COLOR;
 
@@ -33,10 +33,12 @@ module.exports.decorateConfig = config => {
   config.foregroundColor = '#ECEFF1';
   config.borderColor = '#37474F';
   config.cursorColor = `${config.cursorColor || '#FFCC00'}`;
+  config.padding = '24px 24px';
   return Object.assign({}, config, {
     colors,
     termCSS: `
       ${config.termCSS || ''}
+
       x-screen a {
         text-decoration: underline !important;
         color: ${colors.lightCyan} !important;
@@ -89,6 +91,10 @@ module.exports.decorateConfig = config => {
         max-width: 100%;
         padding: 0px 24px 0 8px;
       }
+
+      .splitpane_divider {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+      }
     `
   });
 };
@@ -109,6 +115,6 @@ const blur = () => {
   document.body.classList.remove('focus');
 };
 
-module.exports.onWindow = browserWindow => {
+exports.onWindow = browserWindow => {
   return browserWindow;
 };
