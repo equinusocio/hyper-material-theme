@@ -23,20 +23,26 @@ plugins: ['hyper-material-theme'],
 This theme provides 4 additional settings that you can add in your `~/.hyper.js` file **directly after** the colors object.
 
 ```js
-   colors: {...
+    colors: {...
     },
 
-    // Set the theme variant,
-    // OPTIONS: 'Darker', 'Palenight', ''
-    theme: '',
-    // Set the rgba() app background opacity, useful when enableVibrance is true
-    // OPTIONS: From 0.1 to 1
-    backgroundOpacity: '1',
-    // Set the accent color for the current active tab
-    accentColor: '#64FFDA',
-    // Mac Only. Need restart. Enable the dark vibrance and blurred background
-    // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
-    enableVibrance: false
+    MaterialTheme: {
+        // Set the theme variant,
+        // OPTIONS: 'Darker', 'Palenight', ''
+        theme: '',
 
-    // the shell to run...
+        // Set the rgba() app background opacity, useful when enableVibrance is true
+        // OPTIONS: From 0.1 to 1
+        backgroundOpacity: '1',
+
+        // Set the accent color for the current active tab
+        accentColor: '#64FFDA',
+
+        // Mac Only. Need restart. Enable the vibrance and blurred background
+        // OPTIONS: 'dark', 'ultra-dark', 'bright'
+        // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
+        vibrancy: 'dark'
+    },
+
+    // other configs..
 ```
