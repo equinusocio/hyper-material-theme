@@ -1,5 +1,6 @@
 // Read the options
 const CONFIG = require(process.env.HOME + `/.hyper.js`).config;
+const colors = require('./colors.js').colors;
 const THEME_CONFIG = CONFIG['MaterialTheme'] || {};
 
 // Defaults
@@ -8,24 +9,6 @@ const DEFAULT_VIBRANCY = 'dark';
 // Current options
 const VIBRANCY = THEME_CONFIG.hasOwnProperty('vibrancy') ? THEME_CONFIG.vibrancy : DEFAULT_VIBRANCY;
 
-const colors = {
-  black: '#000000',
-  red: '#D62341',
-  green: '#9ECE58',
-  yellow: '#FAED70',
-  blue: '#396FE2',
-  magenta: '#BB80B3',
-  cyan: '#2DDAFD',
-  white: '#d0d0d0',
-  lightBlack: 'rgba(255, 255, 255, 0.2)',
-  lightRed: '#FF5370',
-  lightGreen: '#C3E88D',
-  lightYellow: '#FFCB6B',
-  lightBlue: '#82AAFF',
-  lightMagenta: '#C792EA',
-  lightCyan: '#89DDFF',
-  lightWhite: '#ffffff'
-};
 
 module.exports.decorateBrowserOptions = config => {
   config.vibrancy = VIBRANCY;
@@ -47,7 +30,7 @@ module.exports.decorateConfig = config => {
   }
 
   config.backgroundColor = BACKGORUND_COLOR;
-  config.foregroundColor = '#eceff1';
+  config.foregroundColor = '#ECEFF1';
   config.borderColor = '#37474F';
   config.cursorColor = `${config.cursorColor || '#FFCC00'}`;
   return Object.assign({}, config, {
@@ -57,6 +40,10 @@ module.exports.decorateConfig = config => {
       x-screen a {
         text-decoration: underline !important;
         color: ${colors.lightCyan} !important;
+      }
+
+      ::selection {
+        background: rgba(255, 255, 255, 0.15);
       }
     `,
     css: `
