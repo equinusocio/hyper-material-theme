@@ -1,5 +1,6 @@
 // Read the options
-const CONFIG = require(process.env.HOME + `/.hyper.js`).config;
+const os = require('os').homedir();
+const CONFIG = require(os + `/.hyper.js`).config;
 const colors = require('./colors.js').colors;
 const THEME_CONFIG = CONFIG['MaterialTheme'] || {};
 
