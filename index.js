@@ -20,10 +20,10 @@ exports.decorateConfig = config => {
 
   var BACKGORUND_COLOR;
 
-  if (THEME_CONFIG.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
+  if (THEME_CONFIG.theme && THEME_CONFIG.theme.toLowerCase() == 'Palenight'.toLowerCase()) {
     BACKGORUND_COLOR = `rgba(41, 45, 62, ${THEME_CONFIG.backgroundOpacity || '1'})`;
   }
-  else if (THEME_CONFIG.theme.toLowerCase() == 'Darker'.toLowerCase()) {
+  else if (THEME_CONFIG.theme && THEME_CONFIG.theme.toLowerCase() == 'Darker'.toLowerCase()) {
     BACKGORUND_COLOR = `rgba(33, 33, 33, ${THEME_CONFIG.backgroundOpacity || '1'})`;
   }
   else {
