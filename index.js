@@ -25,7 +25,7 @@ exports.decorateConfig = config => {
   }
 
   config.backgroundColor = ThemeBackground || config.backgroundColor;
-  config.foregroundColor = '#ECEFF1';
+  config.foregroundColor = `${config.foregroundColor || '#ECEFF1'}`;
   config.borderColor = '#37474F';
   config.cursorColor = `${config.cursorColor || '#FFCC00'}`;
   config.padding = `${config.padding || '24px 24px'}`;
