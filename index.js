@@ -50,8 +50,6 @@ exports.decorateConfig = config => {
       lightWhite: '#ffffff'
     },
     termCSS: `
-      ${config.termCSS || ''}
-
       x-screen a {
         text-decoration: underline !important;
         color: ${ThemeConfig.accentColor || '#80CBC4'} !important;
@@ -78,10 +76,9 @@ exports.decorateConfig = config => {
       *::-webkit-scrollbar-thumb:window-inactive {
         background: transparent;
       }
+      ${config.termCSS || ''}
     `,
     css: `
-      ${config.css || ''}
-
       .hyper_main {
         border: none;
       }
@@ -126,6 +123,7 @@ exports.decorateConfig = config => {
       .splitpane_divider {
         background-color: rgba(0, 0, 0, 0.2) !important;
       }
+      ${config.css || ''}
     `
   });
 };
